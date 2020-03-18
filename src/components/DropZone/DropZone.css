@@ -1,0 +1,18 @@
+.dropzone {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  width: 1140px;
+  height: 600px;
+  border: 4px solid #ddd;
+  border-radius: 4px;
+  color: #999;
+  outline: dashed #ddd 4px;
+  outline-offset: 4px;
+}
+
+.dropzone.active {
+  background: #efefef;
+}
