@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './DropZone.css';
+import { NodeType } from '../../type';
 
-function DropZone() {
+type Props = {
+  onFileTreeChaned: (root: DirType) => void,
+}
 
-  const [active, setActive] = useState(false);
+function DropZone(props: Props) {
+  // Control drop zone background
+  const [active, setActive] = useState<boolean>(false);
+  // Save dataTransfer from drop event 
+  const [dataTransfer, setDataTransfer] = useState<DataTransfer>()
 
   const dragEnterHandler = (event: React.DragEvent<HTMLDivElement>) => {
     setActive(true);
@@ -14,34 +21,27 @@ function DropZone() {
   }
 
   const dragOverHandler = (event: React.DragEvent<HTMLDivElement>) => {
+    // Prevent default handler of dragOver event to make drop event fired
     event.preventDefault();
   }
 
   const dropHandler = async (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
-    const df = event.dataTransfer;
-    const tree = await readDataTransfer(df);
-    console.log(tree)
     setActive(false);
+    const children = await readDataTransfer(event.dataTransfer);
+    const root: DirType = {
+      name: '/',
+      path: '/',
+      type: NodeType.Dir,
+      children,
+    }
+    props.onFileTreeChaned(root);
   }
 
- 
 
-  type FileType = {
-    name: string,
-    path: string,
-    type: 0,
-  }
-
-  type DirType = {
-    name: string,
-    path: string,
-    type: number,
-    children: Array<FileOrDir>,
-  }
-
-  type FileOrDir = FileType | DirType;
-
+  /**
+   * Async read data transfer
+   */  
   async function readDataTransfer(df: DataTransfer) : Promise<Array<FileOrDir>> {
     const traverseFileTreePromises: Array<Promise<FileOrDir | undefined>> = [];
     for (var i = 0; i < df.items.length; i++) {
@@ -52,6 +52,9 @@ function DropZone() {
     return  result.filter<FileOrDir>((tree): tree is FileOrDir => tree !== undefined);
   }
 
+  /**
+   * Traverse file tree
+   */
   async function traverseFileTree(entry: any, path: string = '/') : Promise<FileOrDir | undefined> {
     if (entry.isFile) {
       return await new Promise<FileType>((resolve) => {
