@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './DropZone.css';
 
-function DropZone() {
+type Props = {
+  onFileTreeChaned: (fileTree :FileOrDir[]) => void,
+}
 
+function DropZone(props: Props) {
   const [active, setActive] = useState(false);
 
   const dragEnterHandler = (event: React.DragEvent<HTMLDivElement>) => {
@@ -21,26 +24,9 @@ function DropZone() {
     event.preventDefault();
     const df = event.dataTransfer;
     const tree = await readDataTransfer(df);
-    console.log(tree)
+    props.onFileTreeChaned(tree);
     setActive(false);
   }
-
- 
-
-  type FileType = {
-    name: string,
-    path: string,
-    type: 0,
-  }
-
-  type DirType = {
-    name: string,
-    path: string,
-    type: number,
-    children: Array<FileOrDir>,
-  }
-
-  type FileOrDir = FileType | DirType;
 
   async function readDataTransfer(df: DataTransfer) : Promise<Array<FileOrDir>> {
     const traverseFileTreePromises: Array<Promise<FileOrDir | undefined>> = [];
