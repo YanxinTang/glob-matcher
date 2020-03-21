@@ -14,6 +14,10 @@
   overflow-y: scroll;
 }
 
-.glob-wrapper {
+.matcher-wrapper {
   flex-grow: 1;
+}
+
+.tree-wrapper, .matcher-wrapper {
+  height: 100%;
 }

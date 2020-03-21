@@ -9,14 +9,14 @@ type Props = {
 function Tree (props: Props) {
   let nodeChildren;
   if (props.node.type === NodeType.Dir) {
-    nodeChildren = (props.node as DirType).children.map(node => (
-      <Tree node={node} key={node.path + node.name}/>
+    nodeChildren = (props.node as DirNode).children.map(node => (
+      <Tree node={node} key={node.path + node.name} />
     ))
   }
 
   return (
-    <div className="node">
-      <div className="node-path">
+    <div className={`node${ props.node.active ?  ' active' : '' }${ props.node.siblingActive ? ' sibling-active' : ''}`}>
+      <div className="node-path" title={props.node.name}>
         {props.node.name}
       </div>
       {

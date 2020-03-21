@@ -24,8 +24,11 @@
   top: -1rem;
   width: 4rem;
   height: 2rem;
-  border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+}
+
+.node-path+.node::before {
+  border-left: 1px solid #ccc;
 }
 
 .node .node::after {
@@ -40,4 +43,19 @@
 
 .node .node:last-child:after {
   display: none;
+}
+
+.node.active>.node-path {
+  color: #22a7f2;
+}
+
+.node.active::before {
+  border-color: #22a7f2;
+}
+
+.node.sibling-active::before{
+  border-left-color: #22a7f2;
+}
+.node.sibling-active::after {
+  border-color: #22a7f2;
 }

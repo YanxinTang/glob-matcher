@@ -1,23 +1,25 @@
 /// <reference types="react-scripts" />
 
-declare global {
-  enum NodeType {
-    File = 0,
-    Dir
-  }  
-}
-
-type FileType = {
+type FileNode = {
   name: string,
   path: string,
   type: NodeType.File,
+  active: boolean,
+  siblingActive: boolean,
 }
 
-type DirType = {
+type DirNode = {
   name: string,
   path: string,
   type: NodeType.Dir,
   children: Array<FileOrDir>,
+  active: boolean,
+  siblingActive: boolean,
 }
 
-type FileOrDir = FileType | DirType;
+type FileOrDir = FileNode | DirNode;
+
+type Matcher = {
+  pattern: string,
+  type: MatcherType,
+}

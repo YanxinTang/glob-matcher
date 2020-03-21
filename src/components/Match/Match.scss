@@ -1,0 +1,23 @@
+.matcher {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.matcher-form {
+  margin-top: 100px;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 80%;
+
+  .matcher-form_input {
+    vertical-align: middle;
+    border: 1px solid #aaa;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    flex-grow: 1;
+  }
+}

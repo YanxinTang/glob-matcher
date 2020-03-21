@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './DropZone.css';
 import { NodeType } from '../../type';
 
 type Props = {
-  onFileTreeChaned: (root: DirType) => void,
+  onFileTreeChaned: (root: DirNode) => void,
 }
 
 function DropZone(props: Props) {
   // Control drop zone background
   const [active, setActive] = useState<boolean>(false);
-  // Save dataTransfer from drop event 
-  const [dataTransfer, setDataTransfer] = useState<DataTransfer>()
 
   const dragEnterHandler = (event: React.DragEvent<HTMLDivElement>) => {
     setActive(true);
@@ -29,15 +27,16 @@ function DropZone(props: Props) {
     event.preventDefault();
     setActive(false);
     const children = await readDataTransfer(event.dataTransfer);
-    const root: DirType = {
+    const root: DirNode = {
       name: '/',
       path: '/',
       type: NodeType.Dir,
       children,
+      active: false,
+      siblingActive: false,
     }
     props.onFileTreeChaned(root);
   }
-
 
   /**
    * Async read data transfer
@@ -57,27 +56,31 @@ function DropZone(props: Props) {
    */
   async function traverseFileTree(entry: any, path: string = '/') : Promise<FileOrDir | undefined> {
     if (entry.isFile) {
-      return await new Promise<FileType>((resolve) => {
+      return await new Promise<FileNode>((resolve) => {
         entry.file((file: any) => {
           resolve({
             name: file.name,
-            path: path,
+            path: `${path}${entry.name}`,
             type: 0,
+            active: false,
+            siblingActive: false,
           })
         });
       });
     } else if (entry.isDirectory) {
-      return await new Promise<DirType>((resolve) => {
+      return await new Promise<DirNode>((resolve) => {
         var dirReader = entry.createReader();
         dirReader.readEntries(async (entries: any) => {
-          const result: DirType = {
+          const result: DirNode = {
             name: entry.name,
             path: path,
             type: 1,
             children: [],
+            active: false,
+            siblingActive: false,
           };
           for (var i = 0; i < entries.length; i++) {
-            const tree = await traverseFileTree(entries[i], path + entry.name);
+            const tree = await traverseFileTree(entries[i], `${path}${entry.name}/`);
             if (tree) {
               result.children.push(tree)
             }
