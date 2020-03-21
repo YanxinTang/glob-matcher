@@ -4,7 +4,7 @@ import { MatcherType } from '../../type';
 
 type Props = {
   matcher: Matcher,
-  onMatcherChanged: (matcher: Matcher) => void,
+  changeMatcher: (matcher: Matcher) => void,
 }
 
 function Matcher(props: Props) {
@@ -18,9 +18,11 @@ function Matcher(props: Props) {
   // Update pattern when press enter
   const onKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      props.onMatcherChanged({ pattern, type: MatcherType.Glob });
+      props.changeMatcher({ pattern, type: MatcherType.Glob });
     } else if (event.key === 'Escape') {
       setPattern('');
+      event.preventDefault();
+      event.stopPropagation();
     }
   }
 

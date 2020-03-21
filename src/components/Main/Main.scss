@@ -14,6 +14,17 @@
   overflow-y: scroll;
 }
 
+.back-button {
+  border: none;
+  background: #FFF;
+  font-size: 2rem;
+  font-weight: bolder;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
 .matcher-wrapper {
   flex-grow: 1;
 }

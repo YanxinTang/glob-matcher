@@ -6,7 +6,7 @@ import minimatch from 'minimatch';
 import { MatcherType, NodeType } from './type';
 
 function App() {
-  const [fileTree, setFileTree] = useState<DirNode>()
+  const [fileTree, setFileTree] = useState<DirNode|null>()
   const [matcher, setMatcher] = useState<Matcher>({ pattern: '**/*', type: MatcherType.Glob });
 
   useEffect(() => {
@@ -17,8 +17,26 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matcher])
 
-  const fileTreeChangedHandler = (root: DirNode) => {
-    setFileTree(patternTest(root) as DirNode);
+  useEffect(() => {
+    const escPressHandler = (event: KeyboardEvent) => {
+      if (event.code === 'Escape') {
+        setFileTree(null);
+        setMatcher({ pattern: '**/*', type: MatcherType.Glob });
+      }
+    }
+    window.addEventListener('keydown', escPressHandler);
+    return () => {
+      window.removeEventListener('keydown', escPressHandler);
+    }
+  }, []);
+
+  const fileTreeChangedHandler = (root: DirNode|null = null) => {
+    if (root) {
+      setFileTree(patternTest(root) as DirNode);
+    } else {
+      setFileTree(null);
+    }
+    
   }
 
   const matcherChangedHandler = (matcher: Matcher): void => {
@@ -71,8 +89,13 @@ function App() {
     <div className="App">
       { 
         fileTree
-        ? <Main tree={fileTree} onMatcherChanged={matcherChangedHandler} matcher={matcher}/>
-        : <DropZone onFileTreeChaned={fileTreeChangedHandler}/>
+        ? <Main
+            tree={fileTree}
+            matcher={matcher}
+            changeMatcher={matcherChangedHandler}
+            changeFileTree={setFileTree}
+          />
+        : <DropZone changeFileTree={fileTreeChangedHandler}/>
       }
     </div>
   );

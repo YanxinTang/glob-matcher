@@ -3,7 +3,7 @@ import './DropZone.css';
 import { NodeType } from '../../type';
 
 type Props = {
-  onFileTreeChaned: (root: DirNode) => void,
+  changeFileTree: (root: DirNode) => void,
 }
 
 function DropZone(props: Props) {
@@ -35,7 +35,7 @@ function DropZone(props: Props) {
       active: false,
       siblingActive: false,
     }
-    props.onFileTreeChaned(root);
+    props.changeFileTree(root);
   }
 
   /**
