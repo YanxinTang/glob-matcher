@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/glob-matcher/static/css/main.4d22b109.chunk.css",
+    "main.js": "/glob-matcher/static/js/main.e7d9baae.chunk.js",
+    "main.js.map": "/glob-matcher/static/js/main.e7d9baae.chunk.js.map",
+    "runtime-main.js": "/glob-matcher/static/js/runtime-main.51f714a9.js",
+    "runtime-main.js.map": "/glob-matcher/static/js/runtime-main.51f714a9.js.map",
+    "static/js/2.8e6db101.chunk.js": "/glob-matcher/static/js/2.8e6db101.chunk.js",
+    "static/js/2.8e6db101.chunk.js.map": "/glob-matcher/static/js/2.8e6db101.chunk.js.map",
+    "index.html": "/glob-matcher/index.html",
+    "precache-manifest.260293a9ebd7e1a7f852e049bae51e50.js": "/glob-matcher/precache-manifest.260293a9ebd7e1a7f852e049bae51e50.js",
+    "service-worker.js": "/glob-matcher/service-worker.js",
+    "static/css/main.4d22b109.chunk.css.map": "/glob-matcher/static/css/main.4d22b109.chunk.css.map",
+    "static/js/2.8e6db101.chunk.js.LICENSE.txt": "/glob-matcher/static/js/2.8e6db101.chunk.js.LICENSE.txt",
+    "static/media/file.8f6b3ae4.svg": "/glob-matcher/static/media/file.8f6b3ae4.svg",
+    "static/media/folder.70fa7819.svg": "/glob-matcher/static/media/folder.70fa7819.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.51f714a9.js",
+    "static/js/2.8e6db101.chunk.js",
+    "static/css/main.4d22b109.chunk.css",
+    "static/js/main.e7d9baae.chunk.js"
+  ]
+}
