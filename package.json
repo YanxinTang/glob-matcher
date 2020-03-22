@@ -2,7 +2,7 @@
   "name": "glob-matcher",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://YanxinTang.github.io/glob-matcher",
+  "homepage": "https://glob.chihv.com",
   "dependencies": {
     "@babel/core": "7.8.4",
     "@svgr/webpack": "4.3.3",
