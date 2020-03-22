@@ -1,5 +1,5 @@
 import React from 'react';
-import './Tree.css';
+import './Tree.scss';
 import { NodeType } from '../../type';
 import { ReactComponent as FileIcon } from '@/assets/icons/file.svg';
 import { ReactComponent as DirIcon } from '@/assets/icons/folder.svg';

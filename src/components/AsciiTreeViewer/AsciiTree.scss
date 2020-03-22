@@ -1,3 +1,5 @@
+@import "@/variable.scss";
+
 .ascii-tree {
   display: flex;
   flex-flow: column nowrap;
@@ -12,7 +14,8 @@
   padding: 16px;
   overflow: auto;
   line-height: 1.45;
-  background-color: #f6f8fa;
+  color: #3a3a3a;
+  background-color: #f5f6fa;
   border-radius: 3px;
   width: 100%;
 }
@@ -28,7 +31,7 @@
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-  padding: .5rem 0;
+  padding: .5rem 1rem;
 }
 
 .toolbar .tool {

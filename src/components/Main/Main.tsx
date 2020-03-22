@@ -23,7 +23,7 @@ function Main(props: Props) {
     <div className="main">
       <div className="tree-wrapper">
         <button
-          className="back-button"
+          className="button back-button"
           onClick={onBackClickHandler}
         >
           BACK

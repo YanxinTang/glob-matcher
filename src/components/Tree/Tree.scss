@@ -13,11 +13,15 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  color: #333;
+  color: #7d849d;
+
+  .node-path_value {
+    transition: all .3s;
+  }
 }
 
 .node-path_icon--file, .node-path_icon--dir {
-  fill: currentColor;
+  fill: #a5adc6;
 }
 
 .node-path_value {
@@ -57,17 +61,25 @@
   display: none;
 }
 
-.node.active>.node-path {
-  color: #22a7f2;
+.node.active{
+
+  .node-path {
+    color: #3a78f2;
+  }
+    
+  .node-path_icon--file,
+  .node-path_icon--dir {
+    fill: #3a78f2;
+  }
 }
 
 .node.active::before {
-  border-color: #22a7f2;
+  border-color: #3a78f2;
 }
 
 .node.sibling-active::before{
-  border-left-color: #22a7f2;
+  border-left-color: #3a78f2;
 }
 .node.sibling-active::after {
-  border-color: #22a7f2;
+  border-color: #3a78f2;
 }

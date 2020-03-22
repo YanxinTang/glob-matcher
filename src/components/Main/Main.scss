@@ -11,18 +11,13 @@
   flex-basis: 600px;
   padding: 20px 10px;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  background: #f5f6fa;
 }
 
 .back-button {
-  border: none;
-  background: #FFF;
+  padding: 1rem;
   font-size: 2rem;
-  font-weight: bolder;
-  border-bottom: 1px solid #ccc;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
 }
 
 .matcher-wrapper {

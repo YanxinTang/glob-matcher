@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AsciiTree } from 'oo-ascii-tree';
 import { NodeType } from '../../type';
 import './AsciiTree.scss';
+import { ReactComponent as CopyIcon } from '@/assets/icons/copy.svg';
 
 type Props = {
   tree: FileOrDir,
@@ -36,9 +37,10 @@ function AsciiTreeViewer(props: Props) {
     <div className="ascii-tree">
       <div className="toolbar">
         <button
-          className="tool"
+          className="button"
           onClick={onCopyClickHandler}
         >
+          <CopyIcon/>
           Copy
         </button>
       </div>

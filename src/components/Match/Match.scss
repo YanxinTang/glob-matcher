@@ -1,3 +1,5 @@
+@import "@/variable.scss";
+
 .matcher {
   display: flex;
   flex-flow: column nowrap;
@@ -19,5 +21,11 @@
     font-size: 1.5rem;
     border-radius: 4px;
     flex-grow: 1;
+    outline: none;
+    transition: all .3s;
+    
+    &:focus {
+      border-color: map-get($lightTheme, "primary");
+    }
   }
 }

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import DropZone from './components/DropZone/DropZone';
 import Main from './components/Main/Main';
 import minimatch from 'minimatch';
 import { MatcherType, NodeType } from './type';
+import Logo from '@/assets/logo.png';
 
 function App() {
   const [fileTree, setFileTree] = useState<DirNode|null>()
@@ -95,7 +96,15 @@ function App() {
             changeMatcher={matcherChangedHandler}
             changeFileTree={setFileTree}
           />
-        : <DropZone changeFileTree={fileTreeChangedHandler}/>
+        : (
+          <>
+            <nav className="header">
+              <img src={Logo} alt="Glob Matcher"/>
+              MATCHER
+            </nav>
+            <DropZone changeFileTree={fileTreeChangedHandler}/>
+          </>
+        )
       }
     </div>
   );
