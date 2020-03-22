@@ -3,6 +3,10 @@
 }
 
 .node-path {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
   padding: 0 2.5rem;
   height: 2rem;
   line-height: 2rem;
@@ -10,6 +14,14 @@
   white-space: nowrap;
   overflow: hidden;
   color: #333;
+}
+
+.node-path_icon--file, .node-path_icon--dir {
+  fill: currentColor;
+}
+
+.node-path_value {
+  padding: 0 0.3rem;
 }
 
 .node .node {
