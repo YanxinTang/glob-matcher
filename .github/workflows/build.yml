@@ -1,42 +1,48 @@
 name: build
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x]
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: Checkout 🛎️
+      uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: yarn install, build
+        persist-credentials: false
+
+    - name: Install and Build 🔧
       run: |
         yarn install
         yarn build
 
-  codecov:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-node@v1
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        node-version: '12.x'
-    - name: Generate coverage report
-      run: |
-        yarn install
-        yarn test --coverage
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: build # The folder the action should deploy.
+  
+  # codecov:
+  #   runs-on: ubuntu-latest
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage/clover.xml
+  #   steps:
+  #   - uses: actions/checkout@v1
+  #   - uses: actions/setup-node@v1
+  #     with:
+  #       node-version: '12.x'
+  #   - name: Generate coverage report
+  #     run: |
+  #       yarn install
+  #       yarn test --coverage
+
+  #   - name: Upload coverage to Codecov
+  #     uses: codecov/codecov-action@v1
+  #     with:
+  #       token: ${{ secrets.CODECOV_TOKEN }}
+  #       file: ./coverage/clover.xml
         
