@@ -7402,6 +7402,11 @@ onetime@^5.1.0:
   dependencies:
     mimic-fn "^2.1.0"
 
+oo-ascii-tree@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npm.taobao.org/oo-ascii-tree/download/oo-ascii-tree-1.1.0.tgz#e5bc65db665cfb0d6e4fc750620f7d6c11bc2702"
+  integrity sha1-5bxl22Zc+w1uT8dQYg99bBG8JwI=
+
 open@^7.0.2:
   version "7.0.3"
   resolved "https://registry.npm.taobao.org/open/download/open-7.0.3.tgz#db551a1af9c7ab4c7af664139930826138531c48"
